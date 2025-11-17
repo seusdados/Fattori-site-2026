@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>marcelo fattori | a jornada da transformação jurídica</title>
+    <meta name="description" content="A história de como inconformismo, inspiração e inovação transformaram 23 anos de tradição em futuro.">
+    <meta name="theme-color" content="#2E3192">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;900&family=Crimson+Text:ital,wght@0,400;1,400&display=swap');
+        
+        :root {
+            /* Core Brand Colors */
+            --fattori-black: #0A0B0D;
+            --fattori-white: #FAFBFC;
+            --fattori-primary: #2E3192;
+            --fattori-accent: #00D4FF;
+            --fattori-gold: #F5A623;
+            
+            /* Gradients */
+            --gradient-premium: linear-gradient(135deg, #2E3192 0%, #00D4FF 100%);
+            --gradient-gold: linear-gradient(135deg, #F5A623 0%, #FF6B6B 100%);
+            --gradient-dark: linear-gradient(135deg, #0A0B0D 0%, #2E3192 100%);
+            
+            /* Typography */
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-serif: 'Crimson Text', Georgia, serif;
+            
+            /* Animation */
+            --ease-out: cubic-bezier(0, 0, 0.2, 1);
+            --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+            --spring: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        ::selection {
+            background: var(--fattori-accent);
+            color: var(--fattori-black);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background: var(--fattori-black);
+            color: var(--fattori-white);
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--fattori-accent);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.15s var(--ease-out);
+            mix-blend-mode: difference;
+        }
+
+        .cursor-follower {
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 212, 255, 0.1);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transition: all 0.3s var(--ease-out);
+        }
+
+        /* Navigation com F corrigido */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 3rem;
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+            background: rgba(10, 11, 13, 0.85);
+            transition: all 0.3s var(--ease-out);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-nav {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            color: var(--fattori-white);
+        }
+
+        /* Logo Symbol com F completo e visível */
+        .logo-symbol {
+            width: 30px;
+            height: 30px;
+            position: relative;
+        }
+
+        .logo-symbol::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--fattori-accent);
+            border-radius: 2px;
+        }
+
+        .logo-symbol::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 20px;
+            height: 5px;
+            background: var(--fattori-primary);
+            border-radius: 2px;
+        }
+
+        .logo-symbol .f-middle {
+            position: absolute;
+            left: 0;
+            top: 45%;
+            width: 15px;
+            height: 5px;
+            background: var(--fattori-primary);
+            border-radius: 2px;
+            opacity: 0.8;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 300;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-back {
+            color: var(--fattori-accent);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s var(--ease-out);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-back:hover {
+            gap: 1rem;
+        }
+
+        /* Hero Section with Cinematic Photo */
+        .hero {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--fattori-primary) 0%, var(--fattori-black) 100%);
+            opacity: 0.7;
+            transform: scale(1.1);
+            animation: slow-zoom 20s infinite alternate;
+        }
+
+        @keyframes slow-zoom {
+            0% { transform: scale(1.1); }
+            100% { transform: scale(1.15); }
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                180deg,
+                rgba(10, 11, 13, 0.3) 0%,
+                rgba(10, 11, 13, 0.7) 50%,
+                rgba(10, 11, 13, 0.95) 100%
+            );
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 1000px;
+            padding: 0 2rem;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 200;
+            line-height: 1;
+            margin-bottom: 1rem;
+            letter-spacing: -0.03em;
+            opacity: 0;
+            animation: fadeInUp 1s var(--ease-out) 0.5s forwards;
+        }
+
+        .hero-title .name {
+            font-weight: 600;
+            background: var(--gradient-premium);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            font-weight: 300;
+            opacity: 0.8;
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeInUp 1s var(--ease-out) 0.7s forwards;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: rgba(46, 49, 146, 0.2);
+            border: 1px solid var(--fattori-primary);
+            border-radius: 50px;
+            font-size: 0.875rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeInUp 1s var(--ease-out) 0.9s forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        .scroll-indicator::after {
+            content: '';
+            width: 30px;
+            height: 50px;
+            border: 2px solid var(--fattori-accent);
+            border-radius: 25px;
+            display: block;
+            position: relative;
+        }
+
+        .scroll-indicator::before {
+            content: '';
+            width: 4px;
+            height: 10px;
+            background: var(--fattori-accent);
+            border-radius: 2px;
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: scroll-dot 2s infinite;
+        }
+
+        @keyframes scroll-dot {
+            0% { top: 10px; opacity: 1; }
+            100% { top: 30px; opacity: 0; }
+        }
+
+        /* Movement Sections */
+        .movement-section {
+            min-height: 100vh;
+            position: relative;
+            padding: 6rem 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .movement-3i {
+            background: linear-gradient(135deg, #1a1a2e 0%, #2E3192 100%);
+        }
+
+        .movement-3e {
+            background: linear-gradient(135deg, #2E3192 0%, #00D4FF 100%);
+        }
+
+        .movement-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .movement-visual {
+            position: relative;
+        }
+
+        .movement-circles {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            margin: 0 auto;
+        }
+
+        .circle {
+            position: absolute;
+            border: 2px solid var(--fattori-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.5s var(--ease-out);
+            cursor: pointer;
+        }
+
+        .circle:hover {
+            background: rgba(0, 212, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        .circle-1 {
+            width: 150px;
+            height: 150px;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: float 6s infinite ease-in-out;
+        }
+
+        .circle-2 {
+            width: 150px;
+            height: 150px;
+            bottom: 0;
+            left: 0;
+            animation: float 6s infinite ease-in-out 2s;
+        }
+
+        .circle-3 {
+            width: 150px;
+            height: 150px;
+            bottom: 0;
+            right: 0;
+            animation: float 6s infinite ease-in-out 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .movement-content h2 {
+            font-size: 3rem;
+            font-weight: 200;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .movement-content h2 strong {
+            font-weight: 700;
+            background: var(--gradient-premium);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .movement-subtitle {
+            font-size: 1.25rem;
+            opacity: 0.8;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .movement-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .movement-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            opacity: 0;
+            animation: slideIn 0.8s var(--ease-out) forwards;
+        }
+
+        .movement-item:nth-child(1) { animation-delay: 0.2s; }
+        .movement-item:nth-child(2) { animation-delay: 0.4s; }
+        .movement-item:nth-child(3) { animation-delay: 0.6s; }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .movement-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-premium);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .movement-text h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .movement-text p {
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        /* Timeline Section */
+        .timeline-section {
+            padding: 6rem 3rem;
+            background: var(--fattori-black);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .timeline-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, transparent 0%, var(--fattori-primary) 10%, var(--fattori-primary) 90%, transparent 100%);
+            transform: translateX(-50%);
+        }
+
+        .timeline-header {
+            text-align: center;
+            margin-bottom: 6rem;
+        }
+
+        .timeline-title {
+            font-size: 3rem;
+            font-weight: 200;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .timeline-subtitle {
+            font-size: 1.25rem;
+            opacity: 0.7;
+        }
+
+        .timeline-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 6rem;
+            position: relative;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s var(--ease-out);
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            flex: 1;
+            padding: 2rem 3rem;
+            background: rgba(46, 49, 146, 0.1);
+            border: 1px solid rgba(46, 49, 146, 0.3);
+            border-radius: 20px;
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 30px;
+            height: 2px;
+            background: var(--fattori-primary);
+            transform: translateY(-50%);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            right: -30px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::before {
+            left: -30px;
+        }
+
+        .timeline-year {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--gradient-premium);
+            color: white;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 0.875rem;
+        }
+
+        .timeline-content h3 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+            color: var(--fattori-accent);
+        }
+
+        .timeline-content p {
+            line-height: 1.7;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-highlight {
+            padding: 1rem;
+            background: rgba(0, 212, 255, 0.1);
+            border-left: 3px solid var(--fattori-accent);
+            border-radius: 5px;
+            margin-top: 1rem;
+            font-style: italic;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 20px;
+            height: 20px;
+            background: var(--fattori-primary);
+            border: 4px solid var(--fattori-black);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+        }
+
+        .timeline-dot::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--fattori-primary);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: pulse-ring 2s infinite;
+        }
+
+        @keyframes pulse-ring {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        .timeline-spacer {
+            flex: 1;
+        }
+
+        /* Quote Section */
+        .quote-section {
+            padding: 6rem 3rem;
+            background: var(--gradient-dark);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quote-section::before {
+            content: '"';
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 300px;
+            opacity: 0.05;
+            font-family: var(--font-serif);
+        }
+
+        .quote-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .quote-text {
+            font-size: 2.5rem;
+            font-weight: 300;
+            line-height: 1.4;
+            margin-bottom: 2rem;
+            letter-spacing: -0.02em;
+        }
+
+        .quote-author {
+            font-size: 1.125rem;
+            color: var(--fattori-accent);
+            font-weight: 500;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 6rem 3rem;
+            background: var(--gradient-premium);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-content h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 200;
+            letter-spacing: -0.02em;
+        }
+
+        .cta-content p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .btn-white {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: white;
+            color: var(--fattori-primary);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s var(--ease-out);
+        }
+
+        .btn-white:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .movement-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .movement-circles {
+                margin-bottom: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cursor,
+            .cursor-follower {
+                display: none;
+            }
+
+            body {
+                cursor: auto;
+            }
+
+            .hero-title {
+                font-size: clamp(2rem, 10vw, 4rem);
+            }
+
+            .timeline-section::before {
+                left: 30px;
+            }
+
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                flex-direction: column;
+                padding-left: 60px;
+            }
+
+            .timeline-dot {
+                left: 30px;
+            }
+
+            .timeline-content::before {
+                display: none;
+            }
+
+            .movement-circles {
+                transform: scale(0.7);
+            }
+
+            .quote-text {
+                font-size: 1.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="fattori-advogados-completo.html" class="logo-nav">
+                <div class="logo-symbol">
+                    <span class="f-middle"></span>
+                </div>
+                <div class="logo-text">fattori</div>
+            </a>
+            <a href="fattori-advogados-completo.html" class="nav-back">← voltar ao site</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-image"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="name">marcelo fattori</span>
+            </h1>
+            <p class="hero-subtitle">a jornada de transformação do direito</p>
+            <span class="hero-badge">fundador & visionário</span>
+        </div>
+        <div class="scroll-indicator"></div>
+    </section>
+
+    <!-- Movement 3i Section -->
+    <section class="movement-section movement-3i">
+        <div class="movement-container">
+            <div class="movement-visual">
+                <div class="movement-circles">
+                    <div class="circle circle-1">inconformismo</div>
+                    <div class="circle circle-2">inspiração</div>
+                    <div class="circle circle-3">inovação</div>
+                </div>
+            </div>
+            <div class="movement-content">
+                <h2>movimento <strong>3i</strong></h2>
+                <p class="movement-subtitle">o início da transformação</p>
+                <ul class="movement-list">
+                    <li class="movement-item">
+                        <div class="movement-icon">i</div>
+                        <div class="movement-text">
+                            <h3>inconformismo</h3>
+                            <p>A recusa em aceitar que o direito deve permanecer estático em um mundo em constante evolução digital.</p>
+                        </div>
+                    </li>
+                    <li class="movement-item">
+                        <div class="movement-icon">i</div>
+                        <div class="movement-text">
+                            <h3>inspiração</h3>
+                            <p>Buscar nas fronteiras do conhecimento global as respostas para os desafios jurídicos do amanhã.</p>
+                        </div>
+                    </li>
+                    <li class="movement-item">
+                        <div class="movement-icon">i</div>
+                        <div class="movement-text">
+                            <h3>inovação</h3>
+                            <p>Criar soluções jurídicas que não existiam, para problemas que ainda estão surgindo.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Movement 3e Section -->
+    <section class="movement-section movement-3e">
+        <div class="movement-container">
+            <div class="movement-content">
+                <h2>movimento <strong>3e</strong></h2>
+                <p class="movement-subtitle">a consolidação da visão</p>
+                <ul class="movement-list">
+                    <li class="movement-item">
+                        <div class="movement-icon">e</div>
+                        <div class="movement-text">
+                            <h3>evolução</h3>
+                            <p>Transformar 23 anos de experiência tradicional em uma prática jurídica completamente reimaginada.</p>
+                        </div>
+                    </li>
+                    <li class="movement-item">
+                        <div class="movement-icon">e</div>
+                        <div class="movement-text">
+                            <h3>eficiência</h3>
+                            <p>Integrar inteligência artificial e automação para entregar resultados em horas, não semanas.</p>
+                        </div>
+                    </li>
+                    <li class="movement-item">
+                        <div class="movement-icon">e</div>
+                        <div class="movement-text">
+                            <h3>eficácia</h3>
+                            <p>99% de casos resolvidos com sucesso através da combinação perfeita entre tecnologia e expertise humana.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="movement-visual">
+                <div class="movement-circles">
+                    <div class="circle circle-1">evolução</div>
+                    <div class="circle circle-2">eficiência</div>
+                    <div class="circle circle-3">eficácia</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="timeline-section">
+        <div class="timeline-header">
+            <h2 class="timeline-title">a trajetória</h2>
+            <p class="timeline-subtitle">cada passo uma transformação</p>
+        </div>
+        
+        <div class="timeline-container">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="timeline-year">2002</span>
+                    <h3>o início</h3>
+                    <p>
+                        Marcelo Fattori inicia sua trajetória no mundo jurídico pelas mãos do 
+                        Professor Dr. Tarcísio Germano de Lemos Filho, no escritório 
+                        Germano de Lemos Advogados Associados.
+                    </p>
+                    <div class="timeline-highlight">
+                        "O direito tradicional foi minha escola, mas nunca meu limite."
+                    </div>
+                </div>
+                <div class="timeline-spacer"></div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-spacer"></div>
+                <div class="timeline-content">
+                    <span class="timeline-year">2008</span>
+                    <h3>a ascensão</h3>
+                    <p>
+                        Torna-se sócio do escritório Germano de Lemos, consolidando uma década 
+                        de excelência jurídica e preparando o terreno para transformações futuras.
+                    </p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="timeline-year">2015</span>
+                    <h3>o despertar</h3>
+                    <p>
+                        Durante o LL.M. na USP FDRP, Marcelo Fattori percebe que o mercado 
+                        demandava novas formas de acesso a serviços jurídicos. Não era sobre 
+                        romper com a tradição, mas incrementá-la com novas abordagens conectadas 
+                        às realidades digitais emergentes.
+                    </p>
+                    <div class="timeline-highlight">
+                        "Vi o futuro do direito e entendi que precisávamos construí-lo."
+                    </div>
+                </div>
+                <div class="timeline-spacer"></div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-spacer"></div>
+                <div class="timeline-content">
+                    <span class="timeline-year">2016</span>
+                    <h3>a visão global</h3>
+                    <p>
+                        Na Universidad de Salamanca, Espanha, dedica-se a estudar a então 
+                        revolucionária GDPR - o Regulamento Europeu de Proteção de Dados. 
+                        Antecipa-se dois anos ao mercado, preparando-se para liderar a 
+                        transformação da privacidade digital no Brasil.
+                    </p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="timeline-year">2018</span>
+                    <h3>a preparação</h3>
+                    <p>
+                        De volta ao Brasil, desenha o ponto de virada: uma nova especialização 
+                        com certificação europeia em proteção de dados. Cria um serviço jurídico 
+                        inovador em proteção de dados pessoais, integrando áreas multidisciplinares 
+                        antes desconectadas.
+                    </p>
+                    <div class="timeline-highlight">
+                        "Enquanto outros reagiam à LGPD, nós já estávamos dois anos à frente."
+                    </div>
+                </div>
+                <div class="timeline-spacer"></div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-spacer"></div>
+                <div class="timeline-content">
+                    <span class="timeline-year">2020</span>
+                    <h3>a transformação</h3>
+                    <p>
+                        Após 12 anos como sócio, Marcelo Fattori deixa o escritório tradicional 
+                        e funda <strong>Fattori Advogados</strong> - não apenas um novo escritório, 
+                        mas uma nova forma de pensar e praticar o direito.
+                    </p>
+                    <div class="timeline-highlight">
+                        "Não criamos um escritório com tecnologia. Criamos tecnologia aplicada ao direito."
+                    </div>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote Section -->
+    <section class="quote-section">
+        <div class="quote-content">
+            <p class="quote-text">
+                "O futuro do direito não está em digitalizar o passado, 
+                mas em reimaginar completamente como protegemos pessoas 
+                e empresas em um mundo exponencialmente digital."
+            </p>
+            <p class="quote-author">— Marcelo Fattori</p>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>faça parte desta transformação</h2>
+            <p>Descubra como nossa visão pode proteger e impulsionar seu futuro digital</p>
+            <a href="fattori-advogados-completo.html#contato" class="btn-white">iniciar conversa</a>
+        </div>
+    </section>
+
+    <script>
+        // Custom Cursor
+        const cursor = document.querySelector('.cursor');
+        const follower = document.querySelector('.cursor-follower');
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+        let followerX = 0, followerY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animateCursor() {
+            cursorX += (mouseX - cursorX) * 0.2;
+            cursorY += (mouseY - cursorY) * 0.2;
+            cursor.style.left = cursorX - 10 + 'px';
+            cursor.style.top = cursorY - 10 + 'px';
+            
+            followerX += (mouseX - followerX) * 0.08;
+            followerY += (mouseY - followerY) * 0.08;
+            follower.style.left = followerX - 20 + 'px';
+            follower.style.top = followerY - 20 + 'px';
+            
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // Cursor hover effects
+        const hoverElements = document.querySelectorAll('a, .circle');
+        hoverElements.forEach(elem => {
+            elem.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'scale(2)';
+                cursor.style.borderColor = 'var(--fattori-gold)';
+                follower.style.transform = 'scale(1.5)';
+            });
+            elem.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'scale(1)';
+                cursor.style.borderColor = 'var(--fattori-accent)';
+                follower.style.transform = 'scale(1)';
+            });
+        });
+
+        // Timeline Animation
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        const observerOptions = {
+            threshold: 0.3,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const timelineObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        timelineItems.forEach(item => {
+            timelineObserver.observe(item);
+        });
+
+        // Movement items animation
+        const movementItems = document.querySelectorAll('.movement-item');
+        const movementObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateX(0)';
+                    }, index * 150);
+                }
+            });
+        }, { threshold: 0.2 });
+
+        movementItems.forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateX(-30px)';
+            item.style.transition = 'all 0.6s var(--ease-out)';
+            movementObserver.observe(item);
+        });
+
+        // Parallax on hero image
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const heroImage = document.querySelector('.hero-image');
+            if (heroImage && scrolled < window.innerHeight) {
+                heroImage.style.transform = `scale(1.1) translateY(${scrolled * 0.3}px)`;
+            }
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"], a[href^="/#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const href = this.getAttribute('href');
+                if (href.startsWith('/#')) {
+                    window.location.href = href;
+                } else {
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Interactive circles
+        const circles = document.querySelectorAll('.circle');
+        circles.forEach(circle => {
+            circle.addEventListener('click', function() {
+                const text = this.textContent;
+                const description = getDescription(text);
+                showTooltip(this, description);
+            });
+        });
+
+        function getDescription(text) {
+            const descriptions = {
+                'inconformismo': 'A coragem de questionar o status quo e reimaginar o direito.',
+                'inspiração': 'Buscar conhecimento global para criar soluções locais.',
+                'inovação': 'Transformar ideias visionárias em realidade jurídica.',
+                'evolução': 'De escritório tradicional para ecossistema tecnológico-jurídico.',
+                'eficiência': 'Tempo é o ativo mais valioso - economizamos o seu.',
+                'eficácia': '99% de sucesso através de tecnologia e expertise humana.'
+            };
+            return descriptions[text.toLowerCase()] || '';
+        }
+
+        function showTooltip(element, text) {
+            // Remove existing tooltips
+            document.querySelectorAll('.tooltip').forEach(t => t.remove());
+            
+            const tooltip = document.createElement('div');
+            tooltip.className = 'tooltip';
+            tooltip.textContent = text;
+            tooltip.style.cssText = `
+                position: absolute;
+                background: var(--fattori-black);
+                color: white;
+                padding: 1rem;
+                border-radius: 10px;
+                font-size: 0.9rem;
+                max-width: 250px;
+                z-index: 1000;
+                animation: fadeIn 0.3s ease;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            `;
+            
+            document.body.appendChild(tooltip);
+            
+            const rect = element.getBoundingClientRect();
+            tooltip.style.left = rect.left + (rect.width / 2) - (tooltip.offsetWidth / 2) + 'px';
+            tooltip.style.top = rect.bottom + 10 + 'px';
+            
+            setTimeout(() => tooltip.remove(), 3000);
+        }
+
+        // Add fade in animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(-10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
